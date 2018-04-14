@@ -61,24 +61,24 @@ namespace BankApplication
                         Console.Write("Initial Deposit: ");
                         var amount = Convert.ToDecimal(Console.ReadLine());
 
-                        var account = new Account
-                        {
-                            AccountName = accountName,
-                            AccountType = accountType,
-                            EmailAddress = email,
-                        };
-                        if (amount > 0)
-                        {
-                            account.Deposit(amount);
-                        }
-                        Console.WriteLine($"AN: {account.AccountName}, CD: {account.CreatedDate}, Balance: {account.Balance},Name: {account.AccountName}, Type :{account.AccountType}");
+                       var account = Bank.createAccount(accountName, email, accountType, amount);
+                        Console.WriteLine($"AN: {account.AccountName},emailAddress:{account.EmailAddress}, CD: {account.CreatedDate}, Balance: {account.Balance},Name: {account.AccountName}, Type :{account.AccountType}");
 
+                        break;
+                    case "4":
+                        Console.Write("Email Address: ");
+                        email = Console.ReadLine();
+                        var accounts = Bank.GetAllAccounts(email);
+                        foreach(var acc in accounts)
+                        {
+                            Console.WriteLine($"AN: {acc.AccountName}, emailAddress:{acc.EmailAddress},CD: {acc.CreatedDate}, Balance: {acc.Balance},Name: {acc.AccountName}, Type :{acc.AccountType}");
+                        }
                         break;
                 }
 
                 //case "2":
                 //case "3":
-                //case "4":
+
                 //case "5":
             }
 
